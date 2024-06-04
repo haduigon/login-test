@@ -1,0 +1,10 @@
+.title {
+  color: darkgrey;
+  margin: 0 2%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 2% 0;
+}
