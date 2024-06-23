@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action, AsyncThunkAction } from "@reduxjs/toolkit";
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import userReducer from '../features/user';
 import newsReducer from '../features/news';
 // import { AsyncThunkConfig } from "@reduxjs/toolkit/dist/createAsyncThunk";

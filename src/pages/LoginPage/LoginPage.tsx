@@ -44,9 +44,9 @@ const LoginPage = () => {
 
   useEffect(() => {
     console.log(user, 'one more user');
-    setTimeout(() => {
-      setLoader(true);
-    }, 600)
+    // setTimeout(() => {
+    //   setLoader(true);
+    // }, 600)
   }, [user])
   console.log(user, 'user effect login');
 
@@ -75,18 +75,21 @@ const LoginPage = () => {
     }
   }
 
-  async function handleLogin2() {    
+  async function handleLogin2() {  
+    setLoader(true)
     const myUser: any = await logInWithEmailAndPassword(
       cridentials.email,
       cridentials.password
     );
-    // console.log(myUser, 'myUser');
+    console.log(myUser, 'myUser');
     
     if (myUser.user) {
       dispatch(userActions.setAuthed(true));
       localStorage.setItem('isAuthed', 'true');
       navigate("/profile");
     }
+
+    setLoader(false)
   }
    function handleLogin3() {    
     logInWithEmailAndPassword2(cridentials.email, cridentials.password).then(res => console.log(res));
@@ -104,7 +107,7 @@ const LoginPage = () => {
 
   return (
     <div className="box is-small ml-6 mr-6">
-      {!loader && (
+      {loader && (
         <div>IT IS A LOADER BIIIIG</div>
       )}
       <div className={`${styles.leftSide} ${styles.text}`}>

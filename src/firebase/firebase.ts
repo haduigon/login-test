@@ -24,7 +24,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+// const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 
@@ -51,7 +51,7 @@ async function logInWithEmailAndPassword(email: string, password: string) {
   
   try {
     const login = await signInWithEmailAndPassword(auth, email, password);
-    // console.log(login, 'login');
+    console.log(login, 'login');
     
     return login;
   } catch (error) {
@@ -87,5 +87,5 @@ export {
   loginWithGoogle,
   getUserData,
   auth,
-  db,
+  // db,
 };
