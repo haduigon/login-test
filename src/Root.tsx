@@ -1,6 +1,5 @@
 import {
   HashRouter,
-  Navigate,
   Route,
   Routes,
 } from 'react-router-dom';
@@ -9,10 +8,9 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import NewsPage from './pages/NewsPage';
 import Profile from './pages/Profile';
 import { getAuth } from 'firebase/auth';
+import ProtectedRoute from './app/routes/ProtectedRoute'
 
 const user: any = getAuth().currentUser;
-console.log(user, 'root user');
-
 
 export const Root = () => (
   <HashRouter>
@@ -21,7 +19,11 @@ export const Root = () => (
         <Route index element={<LoginPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/profile" element={<Profile/>} />
-        {/* <Route path="/profile" element={user ? <Profile /> : <Navigate to='/' />} /> */}
+        <Route path="/profile2" element={
+          <ProtectedRoute>
+            <NewsPage />
+          </ProtectedRoute>
+        } />
       </Route>
     </Routes>
   </HashRouter>

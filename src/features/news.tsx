@@ -23,9 +23,7 @@ async function getFinalNews() {
     news.id = uuidv4()
   })
   
-  // console.log(newsnews, 'newsnews');
   return newsNews;
-  // return await client(apiUrl);
 }
 
 export default newsSlice.reducer;

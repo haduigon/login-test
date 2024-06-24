@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { Root } from "./Root";
@@ -10,8 +9,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    {/* <React.StrictMode> */}
       <Root />
-    {/* </React.StrictMode> */}
   </Provider>
 );

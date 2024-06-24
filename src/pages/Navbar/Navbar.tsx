@@ -17,6 +17,9 @@ const Navbar = () => {
       <NavLink to='/profile' className={styles.title}>
         Profile
       </NavLink>
+      <NavLink to='/profile2' className={styles.title}>
+        Protected news
+      </NavLink>
 
       <div className={styles.title} onClick={() =>setShowLogout(!showLogout)}>
         Logout

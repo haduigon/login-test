@@ -20,8 +20,9 @@ const Logout: React.FC<Props> = ({ setShowLogout }) => {
   }
   return (
     <div className={`${styles.container} box`}>
-      Confirm logout
+      Are you sure?    
       <div onClick={() => logoutClickHandler(false)}>Logout</div>
+      <div></div>
       <div onClick={() => setShowLogout(false)}>I`ve changed my mind</div>
     </div>
   );

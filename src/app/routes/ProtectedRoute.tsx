@@ -1,25 +1,35 @@
-import { useNavigate } from "react-router";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  useState,
+} from "react";
+import { Navigate } from "react-router";
 
 type Props = {
-  user: any,
-  children: React.ReactNode
+  children: any
 }
 
-export const ProtectedRoute: React.FC<Props> = ({children, user}) => {
-  const navigate = useNavigate()
-  const userInfo = JSON.parse(localStorage.getItem('user') as string)
-  if (!user) {
-    navigate('/');
-  } 
+const ProtectedRoute: React.FC<Props> = ( {children} ) => {
+  const [user, setUser] = useState<any>(undefined);
+  const listen = onAuthStateChanged(getAuth(), (user2) => {
+    if (!user) {
+      setUser(null);
+    }
+    if (user2) {
+      setUser(user2);
+    }
 
-  if (userInfo === null || !userInfo.isAuth) {
-    navigate('/');
-  }
-  else {
-    return <>
-      {children}
-    </>
-  }
+    return () => {
+      listen();
+    }
+  });
 
-  return null;
-}
+  return (
+    <div className="box">
+      {user === undefined && <div style={{textAlign: 'center'}}>LOOOOAAAADEEEERRR</div>}
+      {user === null && <Navigate to="/" />}
+      {user && <>{children}</>}
+    </div>
+  );
+};
+
+export default ProtectedRoute;

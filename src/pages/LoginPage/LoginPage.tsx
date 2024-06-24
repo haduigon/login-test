@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./LoginPage.module.css";
 import "./LoginPage.module.css";
 import "bulma/css/bulma.min.css";
 import {
   registerWithEmailAndPassword,
   logInWithEmailAndPassword,
-  logInWithEmailAndPassword2,
   loginWithGoogle,
 } from "../../firebase/firebase";
-// import { getAuth, signInWithPopup } from "firebase/auth";
-import { Navigate, useNavigate } from "react-router";
-import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router";
 import { useAppDispatch } from "../../app/hooks";
-// import { useAppSelector } from "../../app/hooks";
 import * as userActions from '../../features/user';
 
 export type Cridentials = {
@@ -23,7 +19,6 @@ export type Cridentials = {
 const LoginPage = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  // const user = getAuth().currentUser;
   const dispatch: any = useAppDispatch();
 
   const [cridentials, setCridentials] = useState<Cridentials>({
@@ -31,30 +26,7 @@ const LoginPage = () => {
     password: "",
   });
 
-  const [user, setUser] = useState<any>()
-  useEffect(() => {
-    setTimeout(() => {
-      setUser(getAuth().currentUser)
-    }, 500)
-    console.log(user, 'user effect login');
-    const au = getAuth()
-    
-  }, [user]);
   const [loader, setLoader] = useState(false);
-
-  useEffect(() => {
-    console.log(user, 'one more user');
-    // setTimeout(() => {
-    //   setLoader(true);
-    // }, 600)
-  }, [user])
-  console.log(user, 'user effect login');
-
-//   useEffect(() => {
-// }, [cridentials.email, cridentials.password])
-
-
-
 
   function onChangeHandler(data: string, field: string) {
     setCridentials((prevState) => {
@@ -90,11 +62,6 @@ const LoginPage = () => {
     }
 
     setLoader(false)
-  }
-   function handleLogin3() {    
-    logInWithEmailAndPassword2(cridentials.email, cridentials.password).then(res => console.log(res));
-
-  
   }
 
   async function handleGoogleLogin() {

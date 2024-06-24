@@ -5,12 +5,8 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  // sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
-import {
-  getFirestore,
-} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBbk2oWzNgTEaKBtfbMdSirTR3wfM0c08E",
@@ -24,7 +20,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-// const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 
@@ -47,11 +42,9 @@ const registerWithEmailAndPassword = async (
 };
 
 async function logInWithEmailAndPassword(email: string, password: string) {
-  console.log(email, password);
   
   try {
     const login = await signInWithEmailAndPassword(auth, email, password);
-    console.log(login, 'login');
     
     return login;
   } catch (error) {
@@ -63,11 +56,8 @@ function logInWithEmailAndPassword2(email: string, password: string) {
    return signInWithEmailAndPassword(auth, email, password);
  }
 
-//  logInWithEmailAndPassword2().then
-
 async function loginWithGoogle() {
   const login = await signInWithPopup(auth, provider)
-  // console.log(login, 'login login');
   return login;
 }
 
@@ -87,5 +77,4 @@ export {
   loginWithGoogle,
   getUserData,
   auth,
-  // db,
 };
